@@ -27,17 +27,14 @@ class ElasticCommonSchemaFormatter extends NormalizerFormatter
 {
     private const ECS_VERSION = '1.2.0';
 
-    private static $logOriginKeys = ['file' => true, 'line' => true, 'class' => true, 'function' => true];
+    private static array $logOriginKeys = ['file' => true, 'line' => true, 'class' => true, 'function' => true];
 
     /**
-     * @var array
-     *
      * @link https://www.elastic.co/guide/en/ecs/current/ecs-base.html
      */
-    protected $tags;
+    protected array $tags;
 
-    /** @var bool */
-    protected $useLogOriginFromContext = true;
+    protected bool $useLogOriginFromContext = true;
 
     /**
      * @param array $tags optional tags to enrich the log lines

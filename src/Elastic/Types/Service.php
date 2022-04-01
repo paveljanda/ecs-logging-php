@@ -22,10 +22,7 @@ use JsonSerializable;
 class Service extends BaseType implements JsonSerializable
 {
 
-    /**
-     * @var array
-     */
-    private $data;
+    private array $data;
 
     /**
      * Unique identifier of the running service.
@@ -33,10 +30,8 @@ class Service extends BaseType implements JsonSerializable
      * <em>If the service is comprised of many nodes, the service.id should be the same for all nodes.</em>
      *
      * @internal core
-     *
-     * @param mixed: string | int
      */
-    final public function setId($id)
+    final public function setId(string|int $id): void
     {
         $this->data['id'] = $id;
     }
@@ -45,10 +40,8 @@ class Service extends BaseType implements JsonSerializable
      * Ephemeral identifier of this service (if one exists)
      *
      * <em>This id normally changes across restarts, but service.id does not.</em>
-     *
-     * @param mixed: string | int
      */
-    final public function setEphemeralId(string $ephemeralId)
+    final public function setEphemeralId(string|int $ephemeralId): void
     {
         $this->data['ephemeral_id'] = $ephemeralId;
     }
@@ -57,10 +50,8 @@ class Service extends BaseType implements JsonSerializable
      * Name of the service data is collected from
      *
      * @internal core
-     *
-     * @param string
      */
-    final public function setName(string $name)
+    final public function setName(string $name): void
     {
         $this->data['name'] = $name;
     }
@@ -72,10 +63,8 @@ class Service extends BaseType implements JsonSerializable
      * This allows for two nodes of the same service running on the same host to be differentiated.
      * Therefore, service.node.name should typically be unique across nodes of a given service.
      * </em>
-     *
-     * @param string
      */
-    final public function setNodeName(string $nodeName)
+    final public function setNodeName(string $nodeName): void
     {
         $this->data['node'] = ['name' => $nodeName];
     }
@@ -84,10 +73,8 @@ class Service extends BaseType implements JsonSerializable
      * Current state of the service
      *
      * @internal core
-     *
-     * @param string
      */
-    final public function setState(string $state)
+    final public function setState(string $state): void
     {
         $this->data['state'] = $state;
     }
@@ -98,10 +85,8 @@ class Service extends BaseType implements JsonSerializable
      * <em>The type can be used to group and correlate logs and metrics from one service type.</em>
      *
      * @internal core
-     *
-     * @param string
      */
-    final public function setType(string $type)
+    final public function setType(string $type): void
     {
         $this->data['type'] = $type;
     }
@@ -112,18 +97,13 @@ class Service extends BaseType implements JsonSerializable
      * <em>This allows to look at a data set only for a specific version of a service.</em>
      *
      * @internal core
-     *
-     * @param string
      */
-    final public function setVersion(string $version)
+    final public function setVersion(string $version): void
     {
         $this->data['version'] = $version;
     }
 
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return ['service' => $this->data];
     }

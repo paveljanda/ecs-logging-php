@@ -25,32 +25,21 @@ class Tracing extends BaseType implements JsonSerializable
 
     /**
      * Unique identifier of the trace
-     *
-     * @var string
      */
-    private $traceId;
+    private string $traceId;
 
     /**
      * Unique identifier of the transaction
-     *
-     * @var string | null
      */
-    private $transactionId;
+    private ?string $transactionId;
 
-    /**
-     * @param string $traceId
-     * @param string $transactionId, Def: null
-     */
     public function __construct(string $traceId, ?string $transactionId = null)
     {
         $this->traceId       = $traceId;
         $this->transactionId = $transactionId;
     }
 
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $message['trace'] = ['id' => $this->traceId];
         if ($this->transactionId !== null) {

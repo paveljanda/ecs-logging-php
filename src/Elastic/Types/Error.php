@@ -24,12 +24,8 @@ use Throwable;
  */
 class Error extends BaseType implements JsonSerializable
 {
-    /** @var Throwable */
-    private $throwable;
+    private Throwable $throwable;
 
-    /**
-     * @param Throwable $throwable
-     */
     public function __construct(Throwable $throwable)
     {
         $this->throwable = $throwable;
@@ -45,9 +41,6 @@ class Error extends BaseType implements JsonSerializable
         ];
     }
 
-    /**
-     * @return array
-     */
     public function jsonSerialize(): array
     {
         return self::serialize($this->throwable);

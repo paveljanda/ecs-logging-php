@@ -22,19 +22,14 @@ use JsonSerializable;
 class User extends BaseType implements JsonSerializable
 {
 
-    /**
-     * @var array
-     */
-    private $data;
+    private array $data;
 
     /**
      * One or multiple unique identifiers of the user
      *
      * @internal core
-     *
-     * @param mixed: string | int
      */
-    final public function setId($id)
+    final public function setId(string|int $id): void
     {
         $this->data['id'] = $id;
     }
@@ -43,40 +38,32 @@ class User extends BaseType implements JsonSerializable
      * Short name or login of the user
      *
      * @internal core
-     *
-     * @param string
      */
-    final public function setName(string $name)
+    final public function setName(string $name) : void
     {
         $this->data['name'] = $name;
     }
 
     /**
      * Name of the directory the user is a member of
-     *
-     * @param string
      */
-    final public function setDomain(string $domain)
+    final public function setDomain(string $domain) : void
     {
         $this->data['domain'] = $domain;
     }
 
     /**
      * User's email address
-     *
-     * @param string
      */
-    final public function setEmail(string $email)
+    final public function setEmail(string $email) : void
     {
         $this->data['email'] = $email;
     }
 
     /**
      * User’s full name, if available
-     *
-     * @param string
      */
-    final public function setFullName(string $fullName)
+    final public function setFullName(string $fullName) : void
     {
         $this->data['full_name'] = $fullName;
     }
@@ -85,18 +72,13 @@ class User extends BaseType implements JsonSerializable
      * Unique user hash to correlate information for a user in anonymized form
      *
      * <em>Useful if user.id or user.name contain confidential information and cannot be used.</em>
-     *
-     * @param string
      */
-    final public function setHash(string $hash)
+    final public function setHash(string $hash) : void
     {
         $this->data['hash'] = $hash;
     }
 
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return ['user' => $this->data];
     }
